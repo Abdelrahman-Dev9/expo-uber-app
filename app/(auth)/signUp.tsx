@@ -1,7 +1,9 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-const signUp = () => {
+const SignUp = () => {
+  const router = useRouter();
   return (
     <View className="flex-1 bg-[#FFFFFF] relative">
       <Image
@@ -50,7 +52,10 @@ const signUp = () => {
             className="w-5 h-5 mr-3"
           />
         </View>
-        <TouchableOpacity className="bg-[#0286FF] rounded-full items-center mt-10 ">
+        <TouchableOpacity
+          className="bg-[#0286FF] rounded-full items-center mt-10 "
+          onPress={() => router.push("/login")}
+        >
           <Text className="p-4 font-semibold text-white text-[17px]">
             Sign Up
           </Text>
@@ -67,13 +72,17 @@ const signUp = () => {
           />
           <Text>Log In with Google</Text>
         </TouchableOpacity>
-        <Text className="mt-10 text-[17px] text-center">
-          Don’t have an account?
-          <Text className="text-[#0286FF] font-semibold"> Log in</Text>
-        </Text>
+        <View className="flex-row items-center justify-center mt-10">
+          <Text className="text-[17px]">Don’t have an account?</Text>
+          <TouchableOpacity onPress={() => router.push("/(auth)/login")}>
+            <Text className="text-[#0286FF] font-semibold text-[17px] ml-2">
+              Log in
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 };
 
-export default signUp;
+export default SignUp;
