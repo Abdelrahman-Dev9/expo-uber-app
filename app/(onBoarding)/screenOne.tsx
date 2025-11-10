@@ -13,6 +13,7 @@ const page = () => {
           "Discover the convenience of finding \n your perfect ride with our Ryde App"
         }
         nextRoute="/screenTwo"
+        id={1}
       />
     </SafeAreaView>
   );

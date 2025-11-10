@@ -14,6 +14,7 @@ interface Props {
   subtitle?: string;
   description: string;
   nextRoute?: string;
+  id: number;
 }
 const OnBoardingScreen = ({
   image,
@@ -21,6 +22,7 @@ const OnBoardingScreen = ({
   subtitle,
   description,
   nextRoute,
+  id,
 }: Props) => {
   const router = useRouter();
   return (
@@ -44,9 +46,21 @@ const OnBoardingScreen = ({
       </View>
 
       <View className="flex-row justify-center gap-2 mt-10">
-        <Text className="h-[4px] w-[40px] my-5 bg-[#2F74FA] rounded-full" />
-        <Text className="h-[4px] w-[40px] my-5 bg-[#E2E8F0] rounded-full" />
-        <Text className="h-[4px] w-[40px] my-5 bg-[#E2E8F0] rounded-full" />
+        <Text
+          className={`h-[4px] w-[40px] my-5 ${
+            id === 1 ? "bg-[#2F74FA]" : "bg-[#E2E8F0]"
+          } rounded-full`}
+        />
+        <Text
+          className={`h-[4px] w-[40px] my-5 ${
+            id === 2 ? "bg-[#2F74FA]" : "bg-[#E2E8F0]"
+          } rounded-full`}
+        />
+        <Text
+          className={`h-[4px] w-[40px] my-5 ${
+            id === 3 ? "bg-[#2F74FA]" : "bg-[#E2E8F0]"
+          } rounded-full`}
+        />
       </View>
       <TouchableOpacity
         className="p-4 rounded-full bg-[#0286FF] items-center mx-10 mt-10"
