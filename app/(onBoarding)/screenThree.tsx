@@ -12,7 +12,7 @@ const page = () => {
         description={
           "Discover the convenience of finding \n your perfect ride with our Ryde App"
         }
-        nextRoute="/"
+        nextRoute="/screenFour"
       />
     </SafeAreaView>
   );
