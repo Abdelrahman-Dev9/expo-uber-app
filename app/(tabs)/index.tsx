@@ -1,11 +1,8 @@
-import { Text, View } from "react-native";
+import { Redirect } from "expo-router";
+import React from "react";
 
-export default function Index() {
-  return (
-    <View>
-      <Text className="text-red-700">
-        Edit app/index.tsx to edit this screen.
-      </Text>
-    </View>
-  );
-}
+const index = () => {
+  return <Redirect href={"/(onBoarding)/screenOne"} />;
+};
+
+export default index;
