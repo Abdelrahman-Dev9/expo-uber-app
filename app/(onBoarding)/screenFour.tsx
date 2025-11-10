@@ -19,7 +19,7 @@ const ScreenFour = () => {
         </Text>
         <TouchableOpacity
           className="bg-[#0286FF] rounded-full items-center mt-10 w-[90%]"
-          onPress={() => router.push("/login")}
+          onPress={() => router.push("/signUp")}
         >
           <Text className="p-4 font-semibold text-white text-[17px]">
             Sign Up
@@ -32,7 +32,7 @@ const ScreenFour = () => {
         </View>
         <TouchableOpacity
           className="border-[#EBEBEB] border-2 rounded-full   p-4 w-[90%] flex-row justify-center gap-5"
-          onPress={() => router.push("/login")}
+          onPress={() => router.push("/signUp")}
         >
           <Image
             source={require("@/assets/icons/google.png")}
