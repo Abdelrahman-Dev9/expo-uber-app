@@ -1,7 +1,9 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
-const page = () => {
+const ScreenFour = () => {
+  const router = useRouter();
   return (
     <View className="flex-1 bg-[#FFFFFF]">
       <Image
@@ -15,7 +17,10 @@ const page = () => {
         <Text className="text-[17px] text-[#858585] mt-5 text-center">
           Sign up or log in to find out the best {"\n"} car for you
         </Text>
-        <TouchableOpacity className="bg-[#0286FF] rounded-full items-center mt-10 w-[90%] ">
+        <TouchableOpacity
+          className="bg-[#0286FF] rounded-full items-center mt-10 w-[90%]"
+          onPress={() => router.push("/login")}
+        >
           <Text className="p-4 font-semibold text-white text-[17px]">
             Sign Up
           </Text>
@@ -25,7 +30,10 @@ const page = () => {
           <Text className="text-[15px] font-semibold">Or</Text>
           <Text className="w-[45%] h-[2px] bg-[#CED1DD]" />
         </View>
-        <TouchableOpacity className="border-[#EBEBEB] border-2 rounded-full   p-4 w-[90%] flex-row justify-center gap-5">
+        <TouchableOpacity
+          className="border-[#EBEBEB] border-2 rounded-full   p-4 w-[90%] flex-row justify-center gap-5"
+          onPress={() => router.push("/login")}
+        >
           <Image
             source={require("@/assets/icons/google.png")}
             className="w-5 h-5"
@@ -41,4 +49,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ScreenFour;

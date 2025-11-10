@@ -2,7 +2,7 @@ import OnBoardingScreen from "@/components/OnBoardingScreen";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const page = () => {
+const ScreenThree = () => {
   return (
     <SafeAreaView>
       <OnBoardingScreen
@@ -19,4 +19,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ScreenThree;
