@@ -1,12 +1,21 @@
+import OnBoardingScreen from "@/components/OnBoardingScreen";
 import React from "react";
-import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const ScreenThree = () => {
+const page = () => {
   return (
-    <View>
-      <Text>ScreenThree</Text>
-    </View>
+    <SafeAreaView>
+      <OnBoardingScreen
+        image={require("@/assets/images/onboarding3.png")}
+        title={"The best car in your \n hands with "}
+        subtitle="Ryde"
+        description={
+          "Discover the convenience of finding \n your perfect ride with our Ryde App"
+        }
+        nextRoute="/"
+      />
+    </SafeAreaView>
   );
 };
 
-export default ScreenThree;
+export default page;
