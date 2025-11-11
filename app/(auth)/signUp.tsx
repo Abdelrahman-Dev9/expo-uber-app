@@ -1,9 +1,43 @@
+import { useSignUp } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
-import React from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Alert,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const SignUp = () => {
+  const { isLoaded, signUp, setActive } = useSignUp();
   const router = useRouter();
+
+  const [name, setName] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = async () => {
+    if (!isLoaded) return;
+
+    try {
+      // Create the user
+      await signUp.create({
+        firstName: name,
+        emailAddress,
+        password,
+      });
+
+      // Send verification email
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+
+      Alert.alert("Check your email", "We sent you a verification code.");
+      router.push("/(auth)/verify-code");
+    } catch (err: any) {
+      Alert.alert("Error", err.errors?.[0]?.message || "Something went wrong");
+    }
+  };
   return (
     <View className="flex-1 bg-[#FFFFFF] relative">
       <Image
@@ -24,7 +58,11 @@ const SignUp = () => {
             source={require("@/assets/icons/person.png")}
             className="w-5 h-5 mr-3"
           />
-          <TextInput placeholder="Enter name" />
+          <TextInput
+            value={name}
+            onChangeText={setName}
+            placeholder="Enter name"
+          />
         </View>
       </View>
       <View className="px-10 mt-5 ">
@@ -34,7 +72,11 @@ const SignUp = () => {
             source={require("@/assets/icons/email.png")}
             className="w-5 h-5 mr-3"
           />
-          <TextInput placeholder="adrian@jsmastery.pr|" />
+          <TextInput
+            value={emailAddress}
+            onChangeText={setEmailAddress}
+            placeholder="adrian@jsmastery.pr|"
+          />
         </View>
       </View>
       <View className="px-10 mt-5 ">
@@ -45,7 +87,12 @@ const SignUp = () => {
               source={require("@/assets/icons/lock.png")}
               className="w-5 h-5 mr-3"
             />
-            <TextInput placeholder="Enter password" />
+            <TextInput
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={true}
+              placeholder="Enter password"
+            />
           </View>
           <Image
             source={require("@/assets/icons/eyecross.png")}
@@ -54,7 +101,7 @@ const SignUp = () => {
         </View>
         <TouchableOpacity
           className="bg-[#0286FF] rounded-full items-center mt-10 "
-          onPress={() => router.push("/login")}
+          onPress={handleSignUp}
         >
           <Text className="p-4 font-semibold text-white text-[17px]">
             Sign Up

@@ -1,6 +1,8 @@
+import { useSignIn } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
+  Alert,
   Image,
   Modal,
   Text,
@@ -10,8 +12,33 @@ import {
 } from "react-native";
 
 const Login = () => {
-  const router = useRouter();
   const [isVerified, setIsVerified] = useState(false);
+  const { isLoaded, signIn, setActive } = useSignIn();
+  const router = useRouter();
+
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignIn = async () => {
+    if (!isLoaded) return;
+
+    try {
+      const result = await signIn.create({
+        identifier: emailAddress,
+        password,
+      });
+
+      // If sign-in is complete, activate session and redirect
+      if (result.status === "complete") {
+        await setActive({ session: result.createdSessionId });
+        router.push("/"); // 👈 change this to your main app route
+      } else {
+        Alert.alert("Check your email", "Verification may be required.");
+      }
+    } catch (err: any) {
+      Alert.alert("Error", err.errors?.[0]?.message || "Invalid credentials");
+    }
+  };
 
   return (
     <View className="flex-1 bg-[#FFFFFF] relative">
@@ -31,7 +58,11 @@ const Login = () => {
             source={require("@/assets/icons/email.png")}
             className="w-5 h-5 mr-3"
           />
-          <TextInput placeholder="adrian@jsmastery.pr|" />
+          <TextInput
+            value={emailAddress}
+            onChangeText={setEmailAddress}
+            placeholder="adrian@jsmastery.pr|"
+          />
         </View>
       </View>
       <View className="px-10 mt-5 ">
@@ -42,7 +73,12 @@ const Login = () => {
               source={require("@/assets/icons/lock.png")}
               className="w-5 h-5 mr-3"
             />
-            <TextInput placeholder="Enter password" />
+            <TextInput
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={true}
+              placeholder="Enter password"
+            />
           </View>
           <Image
             source={require("@/assets/icons/eyecross.png")}
