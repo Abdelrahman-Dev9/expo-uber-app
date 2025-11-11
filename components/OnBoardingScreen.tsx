@@ -27,7 +27,7 @@ const OnBoardingScreen = ({
   const router = useRouter();
   return (
     <View className="mt-5 ">
-      <TouchableOpacity onPress={() => router.push("/")}>
+      <TouchableOpacity onPress={() => router.push("/login")}>
         <Text className="absolute font-semibold right-5 text-[14px]">Skip</Text>
       </TouchableOpacity>
       <Image
