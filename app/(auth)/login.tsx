@@ -1,9 +1,18 @@
 import { useRouter } from "expo-router";
-import React from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Image,
+  Modal,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const Login = () => {
   const router = useRouter();
+  const [isVerified, setIsVerified] = useState(false);
+
   return (
     <View className="flex-1 bg-[#FFFFFF] relative">
       <Image
@@ -12,9 +21,7 @@ const Login = () => {
         resizeMode="cover"
       />
       <View className="absolute top-[210px] left-10 w-full">
-        <Text className="text-[28px] font-semibold mb-6">
-          Create Your Account
-        </Text>
+        <Text className="text-[28px] font-semibold mb-6">Welcome 👋</Text>
       </View>
 
       <View className="px-10 mt-5 ">
@@ -42,7 +49,10 @@ const Login = () => {
             className="w-5 h-5 mr-3"
           />
         </View>
-        <TouchableOpacity className="bg-[#0286FF] rounded-full items-center mt-10 ">
+        <TouchableOpacity
+          className="bg-[#0286FF] rounded-full items-center mt-10"
+          onPress={() => setIsVerified(true)}
+        >
           <Text className="p-4 font-semibold text-white text-[17px]">
             Login
           </Text>
@@ -68,6 +78,47 @@ const Login = () => {
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* Verification Modal - Shows/Hides based on isVerified state */}
+      <Modal
+        visible={isVerified}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setIsVerified(false)}
+      >
+        <View className="items-center justify-center flex-1 px-6 bg-black/50">
+          <View className="items-center w-[355px] h-[442px] p-10 bg-white rounded-3xl gap-4">
+            {/* Success Checkmark */}
+            <Image
+              source={require("@/assets/icons/check.png")}
+              className="w-[100px] h-[100px] mb-3 bg-green-500 rounded-full p-2"
+            />
+
+            {/* Verified Text */}
+            <Text className="mb-3 text-[28px] font-bold text-gray-900">
+              Verified!
+            </Text>
+
+            {/* Description */}
+            <Text className="mb-8 text-[17px] leading-6 text-center text-[#858585]">
+              You have successfully verified{"\n"}your account.
+            </Text>
+
+            {/* Browse Home Button */}
+            <TouchableOpacity
+              className="bg-[#0286FF] w-full py-4 rounded-full items-center"
+              onPress={() => {
+                setIsVerified(false);
+                router.replace("/");
+              }}
+            >
+              <Text className="text-[17px] font-semibold text-[#FFFFFF]">
+                Browse Home
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
