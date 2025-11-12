@@ -87,7 +87,7 @@ const Login = () => {
         </View>
         <TouchableOpacity
           className="bg-[#0286FF] rounded-full items-center mt-10"
-          onPress={() => setIsVerified(true)}
+          onPress={handleSignIn}
         >
           <Text className="p-4 font-semibold text-white text-[17px]">
             Login
@@ -145,7 +145,7 @@ const Login = () => {
               className="bg-[#0286FF] w-full py-4 rounded-full items-center"
               onPress={() => {
                 setIsVerified(false);
-                router.replace("/");
+                router.replace("/(tabs)/home");
               }}
             >
               <Text className="text-[17px] font-semibold text-[#FFFFFF]">
