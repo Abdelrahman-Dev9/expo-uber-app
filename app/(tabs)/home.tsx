@@ -1,16 +1,38 @@
 import { useUser } from "@clerk/clerk-expo";
+import { useRouter } from "expo-router";
 import React from "react";
-import { Image, ScrollView, Text, TextInput, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = () => {
   const { isLoaded, isSignedIn, user } = useUser();
+  const router = useRouter();
 
   // 🟢 Check if user data is loaded
   if (!isLoaded) return <Text>Loading…</Text>;
 
   // 🔴 Check if user is signed in
-  if (!isSignedIn || !user) return <Text>Not signed in</Text>;
+  if (!isSignedIn || !user) {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          router.push("/(auth)/login");
+        }}
+        className="items-center justify-center flex-1"
+      >
+        <Text className="text-[18px] font-semibold text-[#333]">
+          You are not signed in. Tap to sign in.
+        </Text>
+      </TouchableOpacity>
+    );
+  }
 
   // 🟢 Get full name from Clerk user object
   const fullName =
