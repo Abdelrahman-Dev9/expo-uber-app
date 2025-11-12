@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { SignOutButton } from "../(auth)/SignOutButton";
 
 const Profile = () => {
   return (
@@ -100,6 +101,8 @@ const Profile = () => {
               </TouchableOpacity>
             </View>
           </View>
+          {/**lgo out btn */}
+          <SignOutButton />
         </View>
       </ScrollView>
     </View>

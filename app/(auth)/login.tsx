@@ -31,7 +31,7 @@ const Login = () => {
       // If sign-in is complete, activate session and redirect
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
-        router.push("/"); // 👈 change this to your main app route
+        router.push("/(tabs)/home"); // 👈 change this to your main app route
       } else {
         Alert.alert("Check your email", "Verification may be required.");
       }

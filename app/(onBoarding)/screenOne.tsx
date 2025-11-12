@@ -1,6 +1,7 @@
 import OnBoardingScreen from "@/components/OnBoardingScreen";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SignOutButton } from "../(auth)/SignOutButton";
 
 const ScreenOne = () => {
   return (
@@ -15,6 +16,7 @@ const ScreenOne = () => {
         nextRoute="/screenTwo"
         id={1}
       />
+      <SignOutButton />
     </SafeAreaView>
   );
 };
