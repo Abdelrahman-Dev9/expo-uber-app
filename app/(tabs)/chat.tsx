@@ -4,8 +4,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Chat = () => {
   return (
-    <SafeAreaView className="items-center justify-center flex-1">
-      <View>
+    <SafeAreaView className="flex-1 mx-4">
+      {/* 🧭 Header Section */}
+      <View className="flex-row justify-between mt-2 ">
+        <Text className="font-bold text-[22px] text-[#333333]">Chat List</Text>
+        <Image
+          source={require("@/assets/icons/out.png")}
+          className="w-8 h-8 p-1 bg-white rounded-full"
+          resizeMode="contain"
+        />
+      </View>
+      <View className="items-center justify-center flex-1">
         <Image
           source={require("@/assets/images/message.png")}
           className="w-[264px] h-[115px]"
@@ -22,3 +31,7 @@ const Chat = () => {
 };
 
 export default Chat;
+
+/**
+ *
+ */
