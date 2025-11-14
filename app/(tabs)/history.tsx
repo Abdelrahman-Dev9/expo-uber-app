@@ -1,11 +1,17 @@
+import RecentRide from "@/components/RecentRide";
 import React from "react";
-import { Text, View } from "react-native";
+import { ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const History = () => {
   return (
-    <View>
-      <Text>History</Text>
-    </View>
+    <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <RecentRide />
+        <RecentRide />
+        <RecentRide />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
